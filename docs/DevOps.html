@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-12-08 Sat 12:47 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flutter DevOps</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Bizland HUB team" />
+<meta name="description" content="Flutter development road map using emacs"
+ />
+<meta name="keywords" content="org-mode, development, dart, flutter" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Flutter DevOps</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org90178f2">1. Create a project</a></li>
+<li><a href="#org30ab52e">2. Emulator</a></li>
+<li><a href="#orgc9a4793">3. Road maps</a>
+<ul>
+<li><a href="#orgdaeff61">3.1. Easy way</a></li>
+<li><a href="#org9208249">3.2. Compile app (Hardway)</a></li>
+</ul>
+</li>
+<li><a href="#org02e7ca8">4. Udacity course - basics</a>
+<ul>
+<li><a href="#orgadf836f">4.1. Introduction</a></li>
+<li><a href="#org8e2f4db">4.2. Why Flutter</a></li>
+<li><a href="#org5cb2d3e">4.3. Why Dart</a></li>
+<li><a href="#org29f0f84">4.4. Setup your environment</a></li>
+<li><a href="#org2a5cc52">4.5. Build a Flutter app</a></li>
+<li><a href="#orgef09ba2">4.6. Quiz: Build the Hello Rectangle</a></li>
+<li><a href="#org7aab781">4.7. Flutter's Reactive Framework</a></li>
+<li><a href="#org95d9b84">4.8. Flutter's Development Tools</a></li>
+<li><a href="#org2bebf3a">4.9. The Wonderful Things about Widgets</a></li>
+<li><a href="#org83977c3">4.10. Quiz: Explore Flutter Widgets</a></li>
+<li><a href="#org1d2e4b7">4.11. Dissect Hello Rectangle</a></li>
+<li><a href="#org8a813f0">4.12. Build Your Own Widget</a></li>
+</ul>
+</li>
+<li><a href="#org427c933">5. References</a>
+<ul>
+<li><a href="#org6fddb3f">5.1. Flutter's Rendering Pipeline</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="ABSTRACT">
+<p>
+This document contains the development blueprints for mobile
+development with Flutter and Dart with Emacs and console.
+</p>
+
+</div>
+
+<div id="outline-container-org90178f2" class="outline-2">
+<h2 id="org90178f2"><span class="section-number-2">1</span> Create a project</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In the selected directory
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">flutter create &lt;project_name&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org30ab52e" class="outline-2">
+<h2 id="org30ab52e"><span class="section-number-2">2</span> Emulator</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Add the emulator to the path:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #d2ad00; background-color: #faf7e7;">export</span> <span style="color: #6b82a7; background-color: #f1f4f8;">PATH</span>=$<span style="color: #6b82a7; background-color: #f1f4f8;">PATH</span>:~/Android/Sdk/emulator
+</pre>
+</div>
+
+<p>
+List the emulator available devices:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">emulator -list-avds
+</pre>
+</div>
+
+<p>
+Run the emulator
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">emulator -avd Pixel_2_XL_API_28 -netdelay none -netspeed full
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc9a4793" class="outline-2">
+<h2 id="orgc9a4793"><span class="section-number-2">3</span> Road maps</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgdaeff61" class="outline-3">
+<h3 id="orgdaeff61"><span class="section-number-3">3.1</span> Easy way</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+This will take advantages of all the infrastructure of the Flutter project
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #d2ad00; background-color: #faf7e7;">cd</span> &lt;hello_rectangle&gt;
+flutter run
+</pre>
+</div>
+
+<p>
+To clean the directory tree
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">flutter clean
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9208249" class="outline-3">
+<h3 id="org9208249"><span class="section-number-3">3.2</span> Compile app (Hardway)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Go to the <code>android</code> directory (in this case) or <code>ios</code> for mac
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">./gradlew assembleDebug
+</pre>
+</div>
+
+<p>
+Install the <code>apk</code> file into the emulator
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">adb install ../build/app/outputs/apk/debug/app-debug.apk
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org02e7ca8" class="outline-2">
+<h2 id="org02e7ca8"><span class="section-number-2">4</span> Udacity course - basics</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgadf836f" class="outline-3">
+<h3 id="orgadf836f"><span class="section-number-3">4.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/c41SFEhMjNc" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/c41SFEhMjNc">Link here</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8e2f4db" class="outline-3">
+<h3 id="org8e2f4db"><span class="section-number-3">4.2</span> Why Flutter</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/-hGkK2UKhgI" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/-hGkK2UKhgI">Link here</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5cb2d3e" class="outline-3">
+<h3 id="org5cb2d3e"><span class="section-number-3">4.3</span> Why Dart</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/9q4SnR3LLy4" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/9q4SnR3LLy4">Link here</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org29f0f84" class="outline-3">
+<h3 id="org29f0f84"><span class="section-number-3">4.4</span> Setup your environment</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+<b>Set Up Your Environment</b>
+</p>
+
+<p>
+You can set up your development environment by following the
+instructions at <a href="https://flutter.io/setup">https://flutter.io/setup</a> for your operating system.
+</p>
+
+<p>
+You can use many IDEs for developing Flutter apps, including Android
+Studio, IntelliJ, and VSCode. You can find instructions for these IDEs
+at <a href="https://flutter.io/using-ide">https://flutter.io/using-ide</a>.
+</p>
+
+<p>
+If using Android Studio, please ensure your version is 3.1.x.
+</p>
+
+<p>
+You can use a physical iOS/Android device or an emulator. If using an
+emulator, you can follow the instructions at
+<a href="https://developer.android.com/studio/run/managing-avds">https://developer.android.com/studio/run/managing-avds</a>. You can select
+any device and any SDK. If unsure, choose the Pixel 2 and the most
+recent SDK. You can leave all settings as the default, and you can
+optionally enable hardware acceleration.
+</p>
+
+<p>
+Note: We're using Android Studio 3 and the latest Android SDK at the
+time of recording.
+</p>
+
+<p>
+If you come across any errors, you can try to debug these problems by
+looking in our Github issues, StackOverflow #flutter tag, and on
+Gitter. You can also file an issue or ask a question yourself.
+</p>
+
+<p>
+Documentation: <a href="https://docs.flutter.io/">https://docs.flutter.io/</a>
+Github: <a href="https://github.com/flutter/flutter">https://github.com/flutter/flutter</a>
+StackOverflow: <a href="https://stackoverflow.com/questions/tagged/flutter">https://stackoverflow.com/questions/tagged/flutter</a>
+Gitter: <a href="https://gitter.im/flutter/flutter">https://gitter.im/flutter/flutter</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a5cc52" class="outline-3">
+<h3 id="org2a5cc52"><span class="section-number-3">4.5</span> Build a Flutter app</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/QWUIVd1pZ7w" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/QWUIVd1pZ7w">Link here</a>
+</p>
+
+<p>
+You can find the code we used <a href="https://github.com/flutter/udacity-course/blob/master/course/01_hello_rectangle/solution_01_hello_rectangle/lib/main.dart">here</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef09ba2" class="outline-3">
+<h3 id="orgef09ba2"><span class="section-number-3">4.6</span> Quiz: Build the Hello Rectangle</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+In this exercise, you will build your first Flutter app!
+</p>
+</div>
+
+<div id="outline-container-org8520dd8" class="outline-4">
+<h4 id="org8520dd8"><span class="section-number-4">4.6.1</span> Goals</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<ul class="org-ul">
+<li>Verify you've set up Android Studio.</li>
+<li>Verify that the Flutter plugin has been installed.</li>
+<li>Run an app!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3ab965c" class="outline-4">
+<h4 id="org3ab965c"><span class="section-number-4">4.6.2</span> Steps</h4>
+<div class="outline-text-4" id="text-4-6-2">
+<ul class="org-ul">
+<li>Create an app. You can do this using <code>flutter create
+  hello_rectangle</code> from the command line,
+or by going to File -&gt; New -&gt; New Flutter Project.</li>
+
+<li>Delete the contents of your app's <code>lib/main.dart</code>.</li>
+
+<li>Paste in the <a href="https://github.com/flutter/udacity-course/blob/master/course/01_hello_rectangle/solution_01_hello_rectangle/lib/main.dart">code</a> from <code>lib/main.dart</code> in the HelloRectangle app
+into your app's <code>lib/main.dart</code>.</li>
+
+<li>Open your device or emulator, and build and launch the app. You can
+do all this using the green Play button in Android Studio. From the
+command line, you can also do <code>flutter run</code> inside your app's
+project directory.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcee5f7c" class="outline-4">
+<h4 id="orgcee5f7c"><span class="section-number-4">4.6.3</span> Specs</h4>
+<div class="outline-text-4" id="text-4-6-3">
+<ul class="org-ul">
+<li>App has a title.</li>
+<li>App Bar has a title.</li>
+<li>Colored rectangle is centered in the app.</li>
+<li>Text is centered in the Container widget, and center-aligned.</li>
+</ul>
+
+<p>
+Check out the screenshots of what your finished app will look like
+<a href="https://github.com/flutter/udacity-course/tree/master/course/01_hello_rectangle/solution_01_hello_rectangle">here</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7aab781" class="outline-3">
+<h3 id="org7aab781"><span class="section-number-3">4.7</span> Flutter's Reactive Framework</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/LZsb7gnawqA" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/LZsb7gnawqA">Link here</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org95d9b84" class="outline-3">
+<h3 id="org95d9b84"><span class="section-number-3">4.8</span> Flutter's Development Tools</h3>
+<div class="outline-text-3" id="text-4-8">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/ZwN7stRkwFs" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/ZwN7stRkwFs">Link here</a>
+</p>
+
+<ol class="org-ol">
+<li><a href="https://flutter.io/hot-reload">Hot Reload</a></li>
+<li><a href="https://dart-lang.github.io/observatory">Flutter Inspector</a></li>
+<li><a href="https://www.dartlang.org/guides/language/effective-dart/style">Dart Style Guide</a></li>
+<li><a href="https://dart-lang.github.io/observatory">Dart Observatory</a></li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-org2bebf3a" class="outline-3">
+<h3 id="org2bebf3a"><span class="section-number-3">4.9</span> The Wonderful Things about Widgets</h3>
+<div class="outline-text-3" id="text-4-9">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/OqR_Y1m-6xo" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/OqR_Y1m-6xo">Link here</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83977c3" class="outline-3">
+<h3 id="org83977c3"><span class="section-number-3">4.10</span> Quiz: Explore Flutter Widgets</h3>
+<div class="outline-text-3" id="text-4-10">
+<p>
+There is a wide range of Widgets available, and it’s important to
+familiarize yourself with them so you know what to use when designing
+an app. You may recall some Widgets &#x2013; Container, Row, Column &#x2013; but
+there are lots of other useful ones that have been prebuilt so you
+don’t have to build them yourself. Consider Checkboxes, Dropdowns, and
+TextFields!
+</p>
+
+<p>
+Here’s a fun scavenger hunt to learn about the different Widgets that
+Flutter has to offer. Since Flutter is actively being worked upon, new
+Widgets and custom parameters for each Widget are constantly being
+created, and you can see them at <a href="https://flutter.io/widgets">https://flutter.io/widgets</a>. If
+there’s a Widget out there that could be improved, file an issue for
+it, or build it yourself!
+</p>
+</div>
+
+<div id="outline-container-org410877d" class="outline-4">
+<h4 id="org410877d"><span class="section-number-4">4.10.1</span> Question 1</h4>
+<div class="outline-text-4" id="text-4-10-1">
+
+<div id="orgc701a3b" class="figure">
+<p><img src="../graphs/Q_ExploreFlutterWidgets.png" alt="Q_ExploreFlutterWidgets.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Quiz: Question 1</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org790d98f" class="outline-4">
+<h4 id="org790d98f"><span class="section-number-4">4.10.2</span> Question 2</h4>
+<div class="outline-text-4" id="text-4-10-2">
+
+<div id="org3378794" class="figure">
+<p><img src="../graphs/Q_ExploreFlutterWidgets2.png" alt="Q_ExploreFlutterWidgets2.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Quiz: Question 2</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d2e4b7" class="outline-3">
+<h3 id="org1d2e4b7"><span class="section-number-3">4.11</span> Dissect Hello Rectangle</h3>
+<div class="outline-text-3" id="text-4-11">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/2uGXgMi7P_o" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/2uGXgMi7P_o">Link here</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8a813f0" class="outline-3">
+<h3 id="org8a813f0"><span class="section-number-3">4.12</span> Build Your Own Widget</h3>
+<div class="outline-text-3" id="text-4-12">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/oC7eCgcP0ew" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/oC7eCgcP0ew">Link here</a>
+</p>
+
+
+<div id="org96a892a" class="figure">
+<p><img src="../graphs/WidgetStructure.png" alt="WidgetStructure.png" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Widget Structure Example</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org427c933" class="outline-2">
+<h2 id="org427c933"><span class="section-number-2">5</span> References</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org6fddb3f" class="outline-3">
+<h3 id="org6fddb3f"><span class="section-number-3">5.1</span> Flutter's Rendering Pipeline</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/UUfXWzp0-DU" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<a href="https://youtu.be/UUfXWzp0-DU">Link here</a>
+</p>
+
+<ol class="org-ol">
+<li><a href="https://www.dartlang.org/guides/language/effective-dart">Effective Dart</a></li>
+<li><a href="https://www.dartlang.org/guides/language/language-tour">A tour of the Dart Language</a></li>
+<li><a href="https://flutter.io/docs/resources/faq">FAQ</a></li>
+<li><a href="https://github.com/flutter/engine">Flutter's engine</a></li>
+<li><a href="https://flutter.io/hot-reload">Hot Reload</a></li>
+<li><a href="https://dart-lang.github.io/observatory">Flutter Inspector</a></li>
+<li><a href="https://www.dartlang.org/guides/language/effective-dart/style">Dart Style Guide</a></li>
+<li><a href="https://dart-lang.github.io/observatory">Dart Observatory</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 08/12/2018</p>
+<p class="author">Author: Bizland HUB team</p>
+<p class="date">Created: 2018-12-08 Sat 12:47</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

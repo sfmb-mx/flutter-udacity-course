@@ -1,0 +1,343 @@
+#+TITLE:         Flutter DevOps
+#+AUTHOR:        Bizland HUB team
+#+DRAWERS:       sfmb
+#+EMAIL:         sergio@bizland.biz
+#+DATE:          08/12/2018
+#+DESCRIPTION:   Flutter development road map using emacs
+#+KEYWORDS:      org-mode, development, dart, flutter
+#+LANGUAGE:      en
+#+OPTIONS:       H:10 num:t toc:nil \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t d:HIDDEN
+#+OPTIONS:       TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS:       LaTeX:dvipng
+#+INFOJS_OPT:    view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+XSLT:
+#+STYLE: <link rel="stylesheet" type="text/css" href="dft.css"/>
+
+#+LaTeX_CLASS: IEEEtran
+#+LATEX_CLASS_OPTIONS: [letterpaper, 9pt, twoside, compsoc, final]
+#+LATEX_HEADER: \usepackage[USenglish]{babel}
+#+LATEX_HEADER: \hyphenation{do-cu-ment}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{makeidx}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[ttdefault=true]{AnonymousPro}
+#+LATEX_HEADER: \renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+#+LATEX_HEADER: \usepackage[libertine,bigdelims]{newtxmath}
+#+LATEX_HEADER: \usepackage[cal=boondoxo,bb=boondox,frak=boondox]{mathalfa}
+#+LATEX_HEADER: \useosf % change normal text to use proportional oldstyle figures
+
+#+LATEX_HEADER: \markboth{Flutter DevOps}%
+#+LATEX_HEADER: {Bizland HUB}
+#+LATEX_HEADER: \newcommand{\degC}{$^\circ$C{}}
+
+#+STYLE: <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+# -*- mode: org; -*-
+#+OPTIONS:   toc:2
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+
+#+HTML_HEAD: <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+#+HTML_HEAD: <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+
+#+TODO: TODO(t) STARTED(s) WAITING(w) REVISION(r) | DONE(d) CANCELED(c)
+#+TAGS: bug(b) closed(c) important(i) maintenance(m) new_feature(n) improvement(p) related(r) urgent(u)
+
+#+BEGIN_ABSTRACT
+This document contains the development blueprints for mobile
+development with Flutter and Dart with Emacs and console.
+#+END_ABSTRACT
+
+* Create a project
+
+In the selected directory
+
+#+BEGIN_SRC bash
+  flutter create <project_name>
+#+END_SRC
+
+* Emulator
+
+Add the emulator to the path:
+
+#+BEGIN_SRC bash
+  export PATH=$PATH:~/Android/Sdk/emulator
+#+END_SRC
+
+List the emulator available devices:
+
+#+BEGIN_SRC bash
+  emulator -list-avds
+#+END_SRC
+
+Run the emulator
+
+#+BEGIN_SRC bash
+  emulator -avd Pixel_2_XL_API_28 -netdelay none -netspeed full
+#+END_SRC
+
+* Road maps
+
+** Easy way
+
+This will take advantages of all the infrastructure of the Flutter project
+
+#+BEGIN_SRC bash
+  cd <hello_rectangle>
+  flutter run
+#+END_SRC
+
+To clean the directory tree
+
+#+BEGIN_SRC bash
+  flutter clean
+#+END_SRC
+
+** Compile app (Hardway)
+
+Go to the ~android~ directory (in this case) or ~ios~ for mac
+
+#+BEGIN_SRC bash
+  ./gradlew assembleDebug
+#+END_SRC
+
+Install the ~apk~ file into the emulator
+
+#+BEGIN_SRC bash
+  adb install ../build/app/outputs/apk/debug/app-debug.apk
+#+END_SRC
+
+* Udacity course - basics
+
+** Introduction
+
+[[yt:c41SFEhMjNc]]
+
+[[https://youtu.be/c41SFEhMjNc][Link here]]
+
+** Why Flutter
+
+[[yt:-hGkK2UKhgI]]
+
+[[https://youtu.be/-hGkK2UKhgI][Link here]]
+
+** Why Dart
+
+[[yt:9q4SnR3LLy4]]
+
+[[https://youtu.be/9q4SnR3LLy4][Link here]]
+
+** Setup your environment
+
+*Set Up Your Environment*
+
+You can set up your development environment by following the
+instructions at https://flutter.io/setup for your operating system.
+
+You can use many IDEs for developing Flutter apps, including Android
+Studio, IntelliJ, and VSCode. You can find instructions for these IDEs
+at https://flutter.io/using-ide.
+
+If using Android Studio, please ensure your version is 3.1.x.
+
+You can use a physical iOS/Android device or an emulator. If using an
+emulator, you can follow the instructions at
+https://developer.android.com/studio/run/managing-avds. You can select
+any device and any SDK. If unsure, choose the Pixel 2 and the most
+recent SDK. You can leave all settings as the default, and you can
+optionally enable hardware acceleration.
+
+Note: We're using Android Studio 3 and the latest Android SDK at the
+time of recording.
+
+If you come across any errors, you can try to debug these problems by
+looking in our Github issues, StackOverflow #flutter tag, and on
+Gitter. You can also file an issue or ask a question yourself.
+
+Documentation: https://docs.flutter.io/
+Github: https://github.com/flutter/flutter
+StackOverflow: https://stackoverflow.com/questions/tagged/flutter
+Gitter: https://gitter.im/flutter/flutter
+
+** Build a Flutter app
+
+[[yt:QWUIVd1pZ7w]]
+
+[[https://youtu.be/QWUIVd1pZ7w][Link here]]
+
+You can find the code we used [[https://github.com/flutter/udacity-course/blob/master/course/01_hello_rectangle/solution_01_hello_rectangle/lib/main.dart][here]].
+
+** Quiz: Build the Hello Rectangle
+
+In this exercise, you will build your first Flutter app!
+
+*** Goals
+
+- Verify you've set up Android Studio.
+- Verify that the Flutter plugin has been installed.
+- Run an app!
+
+*** Steps
+
+- Create an app. You can do this using ~flutter create
+  hello_rectangle~ from the command line,
+  or by going to File -> New -> New Flutter Project.
+
+- Delete the contents of your app's ~lib/main.dart~.
+
+- Paste in the [[https://github.com/flutter/udacity-course/blob/master/course/01_hello_rectangle/solution_01_hello_rectangle/lib/main.dart][code]] from ~lib/main.dart~ in the HelloRectangle app
+  into your app's ~lib/main.dart~.
+
+- Open your device or emulator, and build and launch the app. You can
+  do all this using the green Play button in Android Studio. From the
+  command line, you can also do ~flutter run~ inside your app's
+  project directory.
+
+*** Specs
+
+- App has a title.
+- App Bar has a title.
+- Colored rectangle is centered in the app.
+- Text is centered in the Container widget, and center-aligned.
+
+Check out the screenshots of what your finished app will look like
+[[https://github.com/flutter/udacity-course/tree/master/course/01_hello_rectangle/solution_01_hello_rectangle][here]].
+
+** Flutter's Reactive Framework
+
+[[yt:LZsb7gnawqA]]
+
+[[https://youtu.be/LZsb7gnawqA][Link here]]
+
+** Flutter's Development Tools
+
+[[yt:ZwN7stRkwFs]]
+
+[[https://youtu.be/ZwN7stRkwFs][Link here]]
+
+1. [[https://flutter.io/hot-reload][Hot Reload]]
+2. [[https://dart-lang.github.io/observatory][Flutter Inspector]]
+3. [[https://www.dartlang.org/guides/language/effective-dart/style][Dart Style Guide]]
+4. [[https://dart-lang.github.io/observatory][Dart Observatory]]
+
+
+** The Wonderful Things about Widgets
+
+[[yt:OqR_Y1m-6xo]]
+
+[[https://youtu.be/OqR_Y1m-6xo][Link here]]
+
+** Quiz: Explore Flutter Widgets
+
+There is a wide range of Widgets available, and it’s important to
+familiarize yourself with them so you know what to use when designing
+an app. You may recall some Widgets -- Container, Row, Column -- but
+there are lots of other useful ones that have been prebuilt so you
+don’t have to build them yourself. Consider Checkboxes, Dropdowns, and
+TextFields!
+
+Here’s a fun scavenger hunt to learn about the different Widgets that
+Flutter has to offer. Since Flutter is actively being worked upon, new
+Widgets and custom parameters for each Widget are constantly being
+created, and you can see them at https://flutter.io/widgets. If
+there’s a Widget out there that could be improved, file an issue for
+it, or build it yourself!
+
+*** Question 1
+
+#+CAPTION:  Quiz: Question 1
+#+NAME:     fig:Q_ExploreFlutterWidgets
+#+ATTR_LATEX: :width 12cm :options angle=0
+[[../graphs/Q_ExploreFlutterWidgets.png]]
+
+*** Question 2
+
+#+CAPTION:  Quiz: Question 2
+#+NAME:     fig:Q_ExploreFlutterWidgets2
+#+ATTR_LATEX: :width 12cm :options angle=0
+[[../graphs/Q_ExploreFlutterWidgets2.png]]
+
+** Dissect Hello Rectangle
+
+[[yt:2uGXgMi7P_o]]
+
+[[https://youtu.be/2uGXgMi7P_o][Link here]]
+
+** Build Your Own Widget
+
+[[yt:oC7eCgcP0ew]]
+
+[[https://youtu.be/oC7eCgcP0ew][Link here]]
+
+#+CAPTION:  Widget Structure Example
+#+NAME:     fig:WidgetStructure
+#+ATTR_LATEX: :width 12cm :options angle=0
+[[../graphs/WidgetStructure.png]]
+
+** Quiz: Code Your Own Category
+
+In this exercise, you'll finish the implementation of the ~Category~
+widget.
+
+So that you don't have to guess the sizes, use these:
+
+- Widget height: 100.0
+- Icon size: 60.0
+- Icon-with-colored-background width: 70.0
+- Text size: 24.0
+
+*** Goals
+
+- Using the existing Flutter widgets, build a custom Category widget.
+- Customize the widget to your liking.
+
+*** Steps
+
+1. Fill out the TODOs in ~category.dart~ and ~main.dart~ using the
+   specs below.
+2. Customize your Category widget if desired. Some ideas are listed
+   below.
+
+*** Specs
+
+- The icon, color, and text should be passed into the Category widget
+  upon instantiation. They should be required.
+- Height of the Category widget is 100.0. Its padding is 8.0.
+- The widget's border radius is half of the Category height (in this
+  case, 50.0). You can define both the height and the border radius as
+  constants.
+- Icon size is 60.0. The padding around the icon is 16.0.
+- Text size is 24.0.
+- The InkWell will not animate if the onTap function is null. Use a
+  print statement for now, as a placeholder.
+  i.e. ~onTap: () { print('I was tapped!'); }.~
+- The InkWell's splash and highlight colors should be the color we
+  pass in.
+The starter code and screenshots are located [[https://github.com/flutter/udacity-course/tree/master/course/02_category_widget/task_02_category_widget][here]].
+
+If you don't know how to download a project from GitHub, please see
+the instructions in the course [[https://github.com/flutter/udacity-course/tree/master/course/02_category_widget/task_02_category_widget][README]].
+
+
+* References
+
+** Flutter's Rendering Pipeline
+
+[[yt:UUfXWzp0-DU]]
+
+[[https://youtu.be/UUfXWzp0-DU][Link here]]
+
+1. [[https://www.dartlang.org/guides/language/effective-dart][Effective Dart]]
+2. [[https://www.dartlang.org/guides/language/language-tour][A tour of the Dart Language]]
+3. [[https://flutter.io/docs/resources/faq][FAQ]]
+4. [[https://github.com/flutter/engine][Flutter's engine]]
+5. [[https://flutter.io/hot-reload][Hot Reload]]
+6. [[https://dart-lang.github.io/observatory][Flutter Inspector]]
+7. [[https://www.dartlang.org/guides/language/effective-dart/style][Dart Style Guide]]
+8. [[https://dart-lang.github.io/observatory][Dart Observatory]]
